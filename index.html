@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energy Optimizer - Luxurious Experience</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Animate.css CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37',
+            secondary: '#8B0000',
+            background: '#1c1c1c',
+            accent: '#e5c100'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['"Poppins"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gradient-to-br from-background to-black">
+
+  <!-- Registration Modal (displayed if no user is registered) -->
+  <div id="registrationModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50 hidden">
+    <div class="bg-white p-8 rounded-xl shadow-2xl animate__animated animate__fadeIn">
+      <h2 class="text-3xl font-display text-primary mb-6 text-center">Enter Your Unique User ID</h2>
+      <input id="regUserId" type="text" placeholder="Unique User ID" class="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary mb-4" />
+      <div class="text-center">
+        <button id="regDoneButton" class="bg-secondary hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition-transform duration-300 hover:scale-105 shadow-lg">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content (hidden until registration is complete) -->
+  <div id="mainContent" class="min-h-screen bg-black bg-opacity-60 hidden">
+    <header class="animate__animated animate__fadeInDown">
+      <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-5xl font-display text-primary">Energy Optimizer</h1>
+        <div class="text-xl font-body text-primary">
+          <span id="userIdDisplay"></span>
+        </div>
+      </div>
+    </header>
+  
+    <main>
+      <section class="py-16 text-center animate__animated animate__zoomIn">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-6xl font-display font-bold text-white">Elevate Your Energy Experience</h2>
+          <p class="mt-6 text-2xl text-gray-300">
+            Unlock personalized predictions and smart insights to reduce your electricity bills.
+          </p>
+        </div>
+      </section>
+  
+      <section class="py-12">
+        <div class="max-w-3xl mx-auto bg-white bg-opacity-95 p-10 rounded-xl shadow-2xl animate__animated animate__fadeInUp">
+          <h3 class="text-4xl font-display font-bold mb-6 text-center text-primary">Submit Your Monthly Data</h3>
+          <form id="energyForm" class="space-y-8">
+            <!-- Month Field -->
+            <div>
+              <label for="month" class="block text-lg font-body text-gray-700 mb-2">Month (e.g., Jan 2023)</label>
+              <input id="month" type="text" placeholder="Jan 2023" required 
+                class="w-full px-5 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-300" />
+            </div>
+            <!-- Total Units Field -->
+            <div>
+              <label for="totalUnits" class="block text-lg font-body text-gray-700 mb-2">Total Units (kWh)</label>
+              <input id="totalUnits" type="number" placeholder="150" required 
+                class="w-full px-5 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-300" />
+            </div>
+            <!-- Bill Amount Field -->
+            <div>
+              <label for="billAmount" class="block text-lg font-body text-gray-700 mb-2">Bill Amount (₹)</label>
+              <input id="billAmount" type="number" placeholder="3000" required 
+                class="w-full px-5 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-300" />
+            </div>
+            <!-- Appliance Usage Section -->
+            <div id="appliancesSection">
+              <h4 class="text-3xl font-display font-semibold text-gray-800 mb-4">Appliance Usage</h4>
+              <div class="appliance mb-6 p-6 border border-gray-200 rounded-md bg-gray-50 shadow-md">
+                <div class="mb-4">
+                  <label class="block text-lg font-body text-gray-700 mb-1">Appliance Name</label>
+                  <input type="text" class="applianceName w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="AC" required />
+                </div>
+                <div class="mb-4">
+                  <label class="block text-lg font-body text-gray-700 mb-1">Power Rating (W)</label>
+                  <input type="number" class="powerRating w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="1500" required />
+                </div>
+                <div class="mb-4">
+                  <label class="block text-lg font-body text-gray-700 mb-1">Daily Usage Hours</label>
+                  <input type="number" class="usageHours w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="5" required />
+                </div>
+              </div>
+            </div>
+            <!-- Button to Add More Appliances -->
+            <div>
+              <button type="button" id="addAppliance" 
+                class="w-full bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-lg">
+                Add Appliance
+              </button>
+            </div>
+            <!-- Submit Button -->
+            <div>
+              <button type="submit" class="w-full bg-secondary hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md transition-transform duration-300 hover:scale-105 shadow-2xl animate__animated animate__fadeInUp">
+                Submit Data
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  
+    <footer class="py-6 animate__animated animate__fadeInUp">
+      <div class="max-w-7xl mx-auto text-center text-gray-400 font-body">
+        © 2025 Energy Optimizer. All rights reserved.
+      </div>
+    </footer>
+  </div>
+  
+  <script src="main.js"></script>
+  <script>
+    // On page load, if user is already registered, display their user ID.
+    const regUser = localStorage.getItem("loggedInUser");
+    if (regUser) {
+      const user = JSON.parse(regUser);
+      document.getElementById("userIdDisplay").innerText = "Welcome, " + user.user_id;
+      // Show main content
+      document.getElementById("mainContent").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
