@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
         try {
-          const response = await fetch('http://192.168.111.136:5000/api/register', {
+          const response = await fetch('http://192.168.1.100:5000/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_id: regUserId })
