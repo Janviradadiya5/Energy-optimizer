@@ -1,0 +1,16 @@
+/* Custom styling */
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Keyframes for a color pulse animation on the login button */
+  @keyframes colorPulse {
+    0% { background-color: #8B0000; }  /* Luxurious Red */
+    50% { background-color: #D4AF37; } /* Gold */
+    100% { background-color: #8B0000; }
+  }
+  
+  .color-animate {
+    animation: colorPulse 2s ease-in-out infinite;
+  }
+  

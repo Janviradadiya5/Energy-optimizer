@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energy Optimizer - Results</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Animate.css CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gradient-to-br from-background to-black">
+  <div class="min-h-screen bg-black bg-opacity-70 flex flex-col">
+    <header class="py-6 text-center animate__animated animate__fadeInDown">
+      <h1 class="text-5xl font-display text-primary">Your Energy Consumption Report</h1>
+    </header>
+    <main class="flex-grow container mx-auto px-4">
+      <div id="resultContainer" class="bg-white bg-opacity-95 p-8 rounded-xl shadow-2xl animate__animated animate__fadeInUp"></div>
+      <div class="mt-8 text-center">
+        <button id="backButton" class="bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-lg">
+          Submit New Data
+        </button>
+      </div>
+    </main>
+    <footer class="py-4 text-center text-gray-400 font-body animate__animated animate__fadeInUp">
+      © 2023 Energy Optimizer. All rights reserved.
+    </footer>
+  </div>
+  <script src="result.js"></script>
+</body>
+</html>
