@@ -1,7 +1,7 @@
 # Energy-optimizer
 
 
-**Energy Optimizer** is a full-stack application that helps users analyze and optimize their energy consumption. Users register using a unique User ID, submit their monthly electricity bill details and appliance data, and receive personalized predictions and insights. All user data is stored uniquely based on the User ID so that each user's records remain separate.
+**Energy Optimizer** Users register using a unique User ID, submit their monthly electricity bill details and appliance data, and receive personalized predictions and insights. All user data is stored uniquely based on the User ID so that each user's records remain separate.
 
 ---
 
